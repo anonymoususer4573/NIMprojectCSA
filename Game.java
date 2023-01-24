@@ -1,13 +1,15 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 public class Game {
     public void play(){
+        //ask for number of players
         System.out.println("How many players?");
         Scanner sc = new Scanner(System.in);
         String n = sc.nextLine();
         int num = Integer.parseInt(n);
 
-        //initialize players
+        //initialize players and randomize
         ArrayList<Player> a = new ArrayList<Player>();
         for(int i=1;i<num+1;i++){
             System.out.println("Input name");
@@ -17,32 +19,39 @@ public class Game {
             System.out.println(temp+" is added.");
         }
 
+        //randomize
+        System.out.println("Randomizing...");
+        Collections.shuffle(a);
 
         //create and populate board
         Board b = new Board();
         b.populate();
 
         //game logic
+
+        //keeps game running until no pieces
         while(b.numPieces>0){
             for(Player p:a){
-                System.out.println("-----------------------------------------------------");
-                System.out.println(p+"'s turn.");
-                System.out.println("How many pieces will you take?");
-                n = sc.nextLine();
-                num=Integer.parseInt(n);
-                if(num==1){
-                    b.numPieces-=num;
-                    System.out.println("The number of pieces left is: "+b.numPieces);
+                //assign a variable numPieces which is returned by player.
+                int numPieces=p.takePiece(b, p);
+
+                //keeps re asking if a wrong input is entered 
+                while(numPieces==0){
+                    System.out.println("Try to take a valid number of pieces.");
+                    numPieces = p.takePiece(b,p);
                 }
-                else if(0<num&&num<=(b.numPieces/2)){
-                    b.numPieces-=num;
-                    System.out.println("The number of pieces left is: "+b.numPieces);
-                }
-                else{
-                    System.out.println("You can't take that many pieces.");
-                    System.out.println("The number of pieces left is: "+b.numPieces);
+                
+                //skip
+                if(numPieces==100){
+                    System.out.println(p+" has skipped their turn.");
                 }
 
+                //if correct input, subtract number of pieces
+                else{
+                    b.numPieces -= numPieces;
+                }
+                
+                //check for if the player has lost
                 if(b.numPieces<0||b.numPieces==0){
                     System.out.println("-----------------------------------------------------");
                     System.out.println(p+" has lost.");
