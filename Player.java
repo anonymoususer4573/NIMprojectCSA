@@ -11,7 +11,7 @@ public class Player{
     public Player(String name, int id){
         this.name=name;
         this.id=id;
-        numSkips=1;
+        this.numSkips=1;
     }
 
     //just if you want a custom number of skips
