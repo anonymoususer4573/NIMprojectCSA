@@ -10,11 +10,14 @@ public class Game {
         int num = Integer.parseInt(n);
 
         //initialize players and randomize
+        System.out.println("How many skips do you want each player to have?");
+        String in = sc.nextLine();
+        int numskips = Integer.parseInt(in);
         ArrayList<Player> a = new ArrayList<Player>();
         for(int i=1;i<num+1;i++){
             System.out.println("Input name");
             String name = sc.nextLine();
-            Player temp = new Player(name, i);
+            Player temp = new Player(name,numskips);
             a.add(temp);
             System.out.println(temp+" is added.");
         }

@@ -14,5 +14,7 @@ public class Runner {
             response = sc.nextLine();
         }
         System.out.println("See you next time!");
+        sc.close();
     }
+
 }

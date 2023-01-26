@@ -4,25 +4,22 @@ public class Player{
 
     //instance variables
     private String name;
-    private int id;
     private int numSkips;
 
     //constructors
-    public Player(String name, int id){
+    public Player(String name){
         this.name=name;
-        this.id=id;
         this.numSkips=1;
     }
 
     //just if you want a custom number of skips
-    public Player(String name, int id, int numSkips){
+    public Player(String name, int numSkips){
         this.name=name;
-        this.id=id;
         this.numSkips=numSkips;
     }
 
     public String toString(){
-        return "Player with Name: "+this.name+" and ID: "+this.id;
+        return "Player with Name: "+this.name;
     }
 
     //function for taking pieces
