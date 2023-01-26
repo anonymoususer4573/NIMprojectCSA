@@ -33,7 +33,7 @@ public class Player{
         System.out.println(p+"'s turn.");
         System.out.println("You have "+this.numSkips+" skips.");
         System.out.println("The number of pieces left is: "+b.numPieces);
-        System.out.println("How many pieces will you take?");
+        System.out.println("How many pieces will you take? Type in any number between 1 and half the number of available pieces. If you want to skip, type in 100");
         Scanner sc = new Scanner(System.in);
         String n = sc.nextLine();
         int num=Integer.parseInt(n);
